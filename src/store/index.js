@@ -4,12 +4,12 @@ import Vue from 'vue'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  states: { //same as data
+  state: { //same as data
     products: []
   },
   getters: { //same as properties
-    productsCount () {
-
+    availableProducts (state, getters) {
+      return state.products.filter(product => product.inventory > 0)
     }
   },
   actions: { //same as methods
@@ -20,6 +20,7 @@ export default new Vuex.Store({
   mutations :{
     setProducts (state, products) {
       state.products = products
+      console.log(this.products)
     }
   }
 })
